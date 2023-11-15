@@ -10,10 +10,10 @@ spec:
   template:
     metadata:
       labels:
-        app: ginx-secondapp
+        app: nginx-secondapp
     spec:
       containers:
-      - name: ginx-secondapp
+      - name: nginx-secondapp
         image: nginx
         ports:
         - containerPort: 80

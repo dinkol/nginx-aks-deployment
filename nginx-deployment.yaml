@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nginx-deployment-test
+  name: nginx-staging
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: nginx-test
+      app: nginx-staging
   template:
     metadata:
       labels:
-        app: nginx-test
+        app: nginx-staging
     spec:
       containers:
-      - name: nginx-test
+      - name: nginx-staging
         image: nginx
         ports:
         - containerPort: 80

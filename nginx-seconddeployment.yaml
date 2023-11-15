@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-seconddeployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginx-secondapp
+  template:
+    metadata:
+      labels:
+        app: ginx-secondapp
+    spec:
+      containers:
+      - name: ginx-secondapp
+        image: nginx
+        ports:
+        - containerPort: 80
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "100m"
+          limits:
+            memory: "128Mi"
+            cpu: "200m"

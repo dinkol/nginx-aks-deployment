@@ -1,16 +1,16 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: app-nginx-dev
+  name: app-nginx-qa
 spec:
   destination:
     name: ''
-    namespace: dev
+    namespace: qa
     server: 'https://kubernetes.default.svc'
   source:
     path: .
     repoURL: 'https://github.com/dinkol/nginx-aks-deployment.git'
-    targetRevision: dev
+    targetRevision: qa
   sources: []
   project: default
   syncPolicy:

@@ -1,25 +1,25 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nginx-deployment-test
+  name: nginx-dev
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: nginx-test
+      app: nginx-dev
   template:
     metadata:
       labels:
-        app: nginx-test
+        app: nginx-dev
     spec:
       containers:
-      - name: nginx-test
+      - name: nginx-dev
         image: nginx
         ports:
         - containerPort: 80
         resources:
           requests:
-            memory: "64Mi"
+            memory: "74Mi"
             cpu: "200m"
           limits:
             memory: "128Mi"

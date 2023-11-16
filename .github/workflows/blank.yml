@@ -1,0 +1,28 @@
+name: Create Kubernetes Namespace
+
+on:
+  push:
+    branches:
+      - dev  # Trigger the workflow on push to the main branch
+
+jobs:
+  create-namespace:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v2
+
+    - name: Install kubectl
+      run: |
+        curl -LO "https://storage.googleapis.com/kubernetes-release/release/`curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt`/bin/linux/amd64/kubectl"
+        chmod +x ./kubectl
+        sudo mv ./kubectl /usr/local/bin/kubectl
+
+    - name: Set up Kubeconfig
+      run: |
+        echo "${{ secrets.KUBE_CONFIG }}" | base64 -d > ./kubeconfig
+        export KUBECONFIG=./kubeconfig
+
+    - name: Run Namespace Creation Script
+      run: |
+        bash ./create-namespace.sh

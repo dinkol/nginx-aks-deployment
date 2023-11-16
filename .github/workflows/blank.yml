@@ -23,6 +23,6 @@ jobs:
         echo "${{ secrets.KUBE_CONFIG }}" | base64 -d > ./kubeconfig
         export KUBECONFIG=./kubeconfig
 
-    - name: Run Namespace Creation Script
+    - name: Create Namespace
       run: |
-        bash ./create-namespace.sh
+        curl -s https://raw.githubusercontent.com/dinkol/nginx-aks-deployment/feature1dev/namespace.sh | bash

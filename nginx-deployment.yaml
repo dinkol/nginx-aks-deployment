@@ -1,25 +1,25 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nginx-dev
+  name: nginx-realtest
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: nginx-dev
+      app: nginx-realtest
   template:
     metadata:
       labels:
-        app: nginx-dev
+        app: nginx-realtest
     spec:
       containers:
-      - name: nginx-dev
+      - name: nginx-realtest
         image: nginx
         ports:
         - containerPort: 80
         resources:
           requests:
-            memory: "74Mi"
+            memory: "75Mi"
             cpu: "200m"
           limits:
             memory: "128Mi"

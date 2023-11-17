@@ -41,7 +41,21 @@ jobs:
           curl -LO "https://storage.googleapis.com/kubernetes-release/release/`curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt`/bin/linux/amd64/kubectl"
           chmod +x ./kubectl
           sudo mv ./kubectl /usr/local/bin/kubectl
+
+    - name: Install Argo CD CLI
+      run: |
+        curl -sSL -o argocd https://github.com/argoproj/argo-cd/releases/latest/download/argocd-linux-amd64
+        chmod +x argocd
+        sudo mv argocd /usr/local/bin
+
+    - name: Login to Argo CD
+      run: |
+        argocd login $ARGOCD_SERVER --username $ARGOCD_USER --password $ARGOCD_PASSWORD --insecure
+      env:
+        ARGOCD_SERVER: ${{ secrets.ARGOCD_SERVER }}
+        ARGOCD_USER: ${{ secrets.ARGOCD_USER }}
+        ARGOCD_PASSWORD: ${{ secrets.ARGOCD_PASSWORD }}
           
     - name: Deploy to AKS
       run: |
-          kubectl apply -n realtest -f https://raw.githubusercontent.com/dinkol/nginx-aks-deployment/realtest/argocd.yaml
+           argocd app create --file https://raw.githubusercontent.com/dinkol/nginx-aks-deployment/realtest/argocd.yaml

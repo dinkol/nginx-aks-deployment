@@ -5,19 +5,13 @@ on:
     types: [closed]
 
 jobs:
-  cleanup:
+  deploy:
     runs-on: ubuntu-latest
-    if: github.event.pull_request.merged == true
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
 
-    - name: Set up Kubeconfig
-      run: |
-        echo "${{ secrets.KUBECONFIG }}" | base64 -d > ./kubeconfig
-        export KUBECONFIG=$PWD/kubeconfig
-
-      - name: Login to Azure
+    - name: Login to Azure
       uses: azure/login@v1
       with:
         creds: |
@@ -41,6 +35,11 @@ jobs:
         cluster-name: aks
         resource-group: aks-rg
 
+    - name: Install kubectl
+      run: |
+          curl -LO "https://storage.googleapis.com/kubernetes-release/release/`curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt`/bin/linux/amd64/kubectl"
+          chmod +x ./kubectl
+          sudo mv ./kubectl /usr/local/bin/kubectl
 
     - name: Delete Namespace
       run: |

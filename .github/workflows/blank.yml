@@ -1,0 +1,22 @@
+name: Cleanup AKS Namespace
+
+on:
+  pull_request:
+    types: [closed]
+
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+    if: github.event.pull_request.merged == true
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Kubeconfig
+      run: |
+        echo "${{ secrets.KUBECONFIG }}" | base64 -d > ./kubeconfig
+        export KUBECONFIG=$PWD/kubeconfig
+
+    - name: Delete Namespace
+      run: |
+        kubectl delete namespace bla

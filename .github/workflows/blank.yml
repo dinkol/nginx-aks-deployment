@@ -44,5 +44,4 @@ jobs:
           
     - name: Deploy to AKS
       run: |
-          kubectl create namespace realtest
           kubectl apply -n realtest -f https://raw.githubusercontent.com/dinkol/nginx-aks-deployment/realtest/argocd.yaml

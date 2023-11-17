@@ -1,19 +1,19 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: app-nginx-realtest
+  name: testnginx
 spec:
   destination:
     name: ''
-    namespace: realtest
+    namespace: production
     server: 'https://kubernetes.default.svc'
   source:
-    path: .
+    path: 'nginx-aks-deployment '
     repoURL: 'https://github.com/dinkol/nginx-aks-deployment.git'
-    targetRevision: realtest
+    targetRevision: HEAD
   sources: []
   project: default
   syncPolicy:
     automated:
-      prune: true
+      prune: false
       selfHeal: true

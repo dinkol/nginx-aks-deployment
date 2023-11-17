@@ -1,6 +1,9 @@
 name: Deploy to AKS
 
-on: [push]
+on:
+  push:
+    branches:
+      - dev
 
 permissions:
   contents: read

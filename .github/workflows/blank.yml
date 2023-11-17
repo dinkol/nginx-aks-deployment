@@ -1,28 +1,48 @@
-name: Create Kubernetes Namespace
+name: Deploy to AKS
 
-on:
-  push:
-    branches:
-      - dev  # Trigger the workflow on push to the main branch
+on: [push]
+
+permissions:
+  contents: read
 
 jobs:
-  create-namespace:
+  deploy:
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout Code
+    - name: Checkout code
       uses: actions/checkout@v2
+
+    - name: Login to Azure
+      uses: azure/login@v1
+      with:
+        creds: |
+          {
+            "clientId": "${{ secrets.AZURE_CLIENT_ID }}",
+            "clientSecret": "${{ secrets.AZURE_CLIENT_SECRET }}",
+            "subscriptionId": "${{ secrets.AZURE_SUBSCRIPTION_ID }}",
+            "tenantId": "${{ secrets.AZURE_TENANT_ID }}"
+          }
+
+    - name: Set AKS Context
+      uses: azure/aks-set-context@v1
+      with:
+        creds: |
+          {
+            "clientId": "${{ secrets.AZURE_CLIENT_ID }}",
+            "clientSecret": "${{ secrets.AZURE_CLIENT_SECRET }}",
+            "subscriptionId": "${{ secrets.AZURE_SUBSCRIPTION_ID }}",
+            "tenantId": "${{ secrets.AZURE_TENANT_ID }}"
+          }
+        cluster-name: aks
+        resource-group: aks-rg
 
     - name: Install kubectl
       run: |
-        curl -LO "https://storage.googleapis.com/kubernetes-release/release/`curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt`/bin/linux/amd64/kubectl"
-        chmod +x ./kubectl
-        sudo mv ./kubectl /usr/local/bin/kubectl
-
-    - name: Set up Kubeconfig
+          curl -LO "https://storage.googleapis.com/kubernetes-release/release/`curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt`/bin/linux/amd64/kubectl"
+          chmod +x ./kubectl
+          sudo mv ./kubectl /usr/local/bin/kubectl
+          
+    - name: Deploy to AKS
       run: |
-        echo "${{ secrets.KUBE_CONFIG }}" | base64 -d > ./kubeconfig
-        export KUBECONFIG=./kubeconfig
-
-    - name: Create Namespace
-      run: |
-        curl -s https://raw.githubusercontent.com/dinkol/nginx-aks-deployment/feature1dev/namespace.sh | bash
+          kubectl create namespace realtest
+          kubectl apply -n qa -f https://raw.githubusercontent.com/dinkol/nginx-aks-deployment/qa/argocd.yaml

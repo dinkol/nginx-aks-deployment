@@ -10,7 +10,7 @@ spec:
   source:
     path: 'nginx-aks-deployment '
     repoURL: 'https://github.com/dinkol/nginx-aks-deployment.git'
-    targetRevision: JFROG
+    targetRevision: jfrog
   sources: []
   project: default
   syncPolicy:

@@ -61,4 +61,5 @@ jobs:
           
     - name: Deploy to AKS
       run: |
+           kubectl create namespace argocd
            argocd app create --file https://raw.githubusercontent.com/dinkol/nginx-aks-deployment/jfrog/argocd.yaml

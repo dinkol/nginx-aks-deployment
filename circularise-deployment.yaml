@@ -1,3 +1,10 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: jfrog-registry-credentials
+type: kubernetes.io/dockerconfigjson
+data:
+  .dockerconfigjson: "${{ secrets.DOCKER_CONFIG }}"
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -24,3 +31,5 @@ spec:
           limits:
             memory: "128Mi"
             cpu: "330m"
+      imagePullSecrets:
+      - name: jfrog-registry-credentials

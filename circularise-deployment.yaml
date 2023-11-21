@@ -4,7 +4,7 @@ metadata:
   name: jfrog-registry-credentials
 type: kubernetes.io/dockerconfigjson
 data:
-  .dockerconfigjson: "${{ secrets.JFROG_CONFIG }}"
+  .dockerconfigjson: "${{ secrets.DOCKER_CONFIG }}"
 apiVersion: apps/v1
 kind: Deployment
 metadata:

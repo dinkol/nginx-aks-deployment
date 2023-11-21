@@ -8,7 +8,7 @@ spec:
     namespace: production
     server: 'https://kubernetes.default.svc'
   source:
-    path: 'nginx-aks-deployment '
+    path: .
     repoURL: 'https://github.com/dinkol/nginx-aks-deployment.git'
     targetRevision: jfrog
   sources: []

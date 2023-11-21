@@ -1,20 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nginx-deployment-test
+  name: circularise
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: nginx-test
+      app: circularise
   template:
     metadata:
       labels:
-        app: nginx-test
+        app: circularise
     spec:
       containers:
-      - name: nginx-test
-        image: nginx
+      - name: circularise
+        image: autojfrog.jfrog.io/newapp1/simple-circularise:latest 
         ports:
         - containerPort: 80
         resources:

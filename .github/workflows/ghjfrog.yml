@@ -3,7 +3,7 @@ name: Deploy to AKS
 on:
   push:
     branches:
-      - jfrog
+      - jfrog1
 
 permissions:
   contents: read
@@ -61,4 +61,4 @@ jobs:
           
     - name: Deploy to AKS
       run: |
-           argocd app create --file https://raw.githubusercontent.com/dinkol/nginx-aks-deployment/jfrog/argocd.yaml
+           argocd app create --file https://raw.githubusercontent.com/dinkol/nginx-aks-deployment/jfrognewns/argocd.yaml

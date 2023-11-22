@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: circularise
+  name: jfrog-nginx
 spec:
   type: LoadBalancer
   ports:

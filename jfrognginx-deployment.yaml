@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: jfrog-nginx
+  name: jfrognewns-nginx
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: jfrog-nginx
+      app: jfrognewns-nginx
   template:
     metadata:
       labels:
-        app: jfrog-nginx
+        app: jfrognewns-nginx
     spec:
       containers:
-      - name: jfrog-nginx
+      - name: jfrognewns-nginx
         image: autojfrog.jfrog.io/docker-trial/mynginximage:latest 
         ports:
         - containerPort: 80

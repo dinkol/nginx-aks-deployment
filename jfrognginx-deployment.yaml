@@ -25,4 +25,4 @@ spec:
             memory: "128Mi"
             cpu: "330m"
       imagePullSecrets:
-      - name: jfrog-registry-credentials
+      - name: jfrogaks-registry-credentials

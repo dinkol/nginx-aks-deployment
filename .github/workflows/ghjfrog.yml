@@ -3,7 +3,7 @@ name: Deploy to AKS
 on:
   push:
     branches:
-      - jfrog1
+      - jfrognewns
 
 permissions:
   contents: read

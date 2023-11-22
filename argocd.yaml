@@ -1,16 +1,16 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: jfrog-nginx
+  name: jfrognewns-nginx
 spec:
   destination:
     name: ''
-    namespace: default
+    namespace: jfrognewns
     server: 'https://kubernetes.default.svc'
   source:
     path: .
     repoURL: 'https://github.com/dinkol/nginx-aks-deployment.git'
-    targetRevision: jfrog
+    targetRevision: jfrognewns
   sources: []
   project: default
   syncPolicy:

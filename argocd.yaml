@@ -5,18 +5,18 @@ metadata:
   namespace: argocd
 spec:
   destination:
-    name: ''
+  #  name: ''
     namespace: kaaaaaj
     server: 'https://kubernetes.default.svc'
   source:
     path: .
     repoURL: 'https://github.com/dinkol/nginx-aks-deployment.git'
     targetRevision: jfrog
-  sources: []
+#  sources: []
   project: dinko
   syncPolicy:
     automated:
-      prune: false
+  #    prune: false
       selfHeal: true
     syncOptions:
     - CreateNamespace=true

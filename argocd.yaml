@@ -2,7 +2,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: jfrog-nginx
-  namespace: kaaaaaj
+  namespace: argocd
 spec:
   destination:
     name: ''

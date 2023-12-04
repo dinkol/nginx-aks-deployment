@@ -16,7 +16,7 @@ spec:
       - name: testguide
         image: autojfrog.jfrog.io/docker-trial/testguide:1.160.0
         ports:
-        - containerPort: 8085
+        - containerPort: 8080
         resources:
           requests:
             memory: "64Mi"

@@ -61,4 +61,4 @@ jobs:
           
     - name: Deploy to AKS
       run: |
-           argocd app create --file https://raw.githubusercontent.com/dinkol/nginx-aks-deployment/jfrognewns/argocd.yaml
+           argocd app create --file https://raw.githubusercontent.com/dinkol/nginx-aks-deployment/testguide/argocd.yaml

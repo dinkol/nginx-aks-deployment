@@ -1,16 +1,16 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: jfrognewns-nginx
+  name: testguide
 spec:
   destination:
     name: ''
-    namespace: jfrognewns
+    namespace: testguide
     server: 'https://kubernetes.default.svc'
   source:
     path: .
     repoURL: 'https://github.com/dinkol/nginx-aks-deployment.git'
-    targetRevision: jfrognewns
+    targetRevision: testguide
   sources: []
   project: default
   syncPolicy:

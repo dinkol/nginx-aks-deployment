@@ -1,22 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: jfrognewns-nginx
+  name: testguide
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: jfrognewns-nginx
+      app: testguide
   template:
     metadata:
       labels:
-        app: jfrognewns-nginx
+        app: testguide
     spec:
       containers:
-      - name: jfrognewns-nginx
-        image: autojfrog.jfrog.io/docker-trial/mynginximage:latest 
+      - name: testguide
+        image: autojfrog.jfrog.io/docker-trial/testguide:1.160.0
         ports:
-        - containerPort: 80
+        - containerPort: 8085
         resources:
           requests:
             memory: "64Mi"

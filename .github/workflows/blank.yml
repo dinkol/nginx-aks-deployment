@@ -57,7 +57,7 @@ jobs:
           --container-name $CONTAINER_NAME \
           --name $BLOB_NAME \
           --file $LOCAL_FILE_PATH \
-          --auth-mode key
+          --auth-mode login
       env:
         AZURE_STORAGE_ACCOUNT: ${{ secrets.STORAGE_ACCOUNT }}
         AZURE_STORAGE_KEY: ${{ secrets.STORAGE_KEY }}

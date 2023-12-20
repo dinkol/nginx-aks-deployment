@@ -28,7 +28,7 @@ jobs:
       env:
         PGPASSWORD: ${{ secrets.DB_PASSWORD }}
       run: |
-        pg_dump -U ${{ secrets.DB_USER }} -h ${{ secrets.DB_HOST }} -p ${{ secrets.DB_PORT }} ${{ secrets.DB_NAME }} > db_backup.sql
+        pg_dump -U ${{ secrets.DB_USER }} -h ${{ secrets.DB_HOST }} -p ${{ secrets.DB_PORT }} ${{ secrets.DB_NAME }} > db_backup1.sql
         
     - name: Login to Azure
       uses: azure/login@v1
@@ -41,25 +41,12 @@ jobs:
             "tenantId": "${{ secrets.AZURE_TENANT_ID }}"
           }
           
-    - name: Set AKS Context
-      uses: azure/aks-set-context@v1
-      with:
-        creds: |
-          {
-            "clientId": "${{ secrets.AZURE_CLIENT_ID }}",
-            "clientSecret": "${{ secrets.AZURE_CLIENT_SECRET }}",
-            "subscriptionId": "${{ secrets.AZURE_SUBSCRIPTION_ID }}",
-            "tenantId": "${{ secrets.AZURE_TENANT_ID }}"
-          }
-        cluster-name: aks
-        resource-group: aks-rg
-          
     - name: Upload file to Azure Blob Storage
       run: |       
         STORAGE_ACCOUNT_NAME="postgresqlsatest"
         CONTAINER_NAME="backupcontainer"
-        LOCAL_FILE_PATH="db_backup.sql"
-        BLOB_NAME="db_backup.sql"
+        LOCAL_FILE_PATH="db_backup1.sql"
+        BLOB_NAME="db_backup1.sql"
 
         # Install Azure CLI extension for Blob Storage
         az extension add --name storage-preview

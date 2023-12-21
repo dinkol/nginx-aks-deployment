@@ -28,7 +28,7 @@ jobs:
       env:
         PGPASSWORD: ${{ secrets.DB_PASSWORD }}
       run: |
-        pg_dump -U ${{ secrets.DB_USER }} -h ${{ secrets.DB_HOST }} -p ${{ secrets.DB_PORT }} ${{ secrets.DB_NAME }} > db_backup3.sql
+        pg_dump -U ${{ secrets.DB_USER }} -h ${{ secrets.DB_HOST }} -p ${{ secrets.DB_PORT }} ${{ secrets.DB_NAME }} > db_backup1.sql
         
     - name: Login to Azure
       uses: azure/login@v1
@@ -39,8 +39,8 @@ jobs:
       run: |       
         STORAGE_ACCOUNT_NAME="postgresqlsatest"
         CONTAINER_NAME="backupcontainer"
-        LOCAL_FILE_PATH="db_backup3.sql"
-        BLOB_NAME="db_backup3.sql"
+        LOCAL_FILE_PATH="db_backup1.sql"
+        BLOB_NAME="db_backup1.sql"
 
         # Install Azure CLI extension for Blob Storage
         az extension add --name storage-preview
@@ -52,9 +52,9 @@ jobs:
           --name $BLOB_NAME \
           --file $LOCAL_FILE_PATH \
           --auth-mode login
-      env:
-        AZURE_STORAGE_ACCOUNT: ${{ secrets.STORAGE_ACCOUNT }}
-        AZURE_STORAGE_KEY: ${{ secrets.STORAGE_KEY }}
+  #    env:
+  #      AZURE_STORAGE_ACCOUNT: ${{ secrets.STORAGE_ACCOUNT }}
+  #      AZURE_STORAGE_KEY: ${{ secrets.STORAGE_KEY }}
 
     - name: Logout from Azure
       run: az logout

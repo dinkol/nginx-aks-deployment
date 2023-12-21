@@ -29,6 +29,7 @@ jobs:
     - name: Download .sql file from Azure Blob Storage
       run: |
         az storage blob download \
+          --account-name postgresqlsatest \
           --container-name backupcontainer \
           --name db_backup1.sql \
           --file db_backup1.sql \

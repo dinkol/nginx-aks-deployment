@@ -38,7 +38,7 @@ jobs:
     - name: Restore Database from .sql file
       run: |
         PGPASSWORD=${{ secrets.POSTGRES_PASSWORD }} 
-        pg_restore -h ${{ secrets.DB_HOST }} -U ${{ secrets.POSTGRES_USER }} -d ${{ secrets.POSTGRES_DB }} -1 db_backup1.sql
+            psql -h ${{ secrets.DB_HOST }} -U ${{ secrets.POSTGRES_USER }} -d ${{ secrets.POSTGRES_DB }} -f db_backup1.sql
         
       env:
         PGPASSWORD: ${{ secrets.POSTGRES_PASSWORD }}

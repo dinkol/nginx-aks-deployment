@@ -31,14 +31,14 @@ jobs:
         az storage blob download \
           --account-name postgresqlsatest \
           --container-name backupcontainer \
-          --name restore.sql \
-          --file restore.sql \
+          --name dvdrental_backup1.sql \
+          --file dvdrental_backup1.sql \
           --auth-mode login
 
     - name: Restore Database from .sql file
       run: |
         PGPASSWORD=${{ secrets.POSTGRES_PASSWORD }} 
-            psql -h ${{ secrets.DB_HOST }} -U ${{ secrets.POSTGRES_USER }} -d ${{ secrets.POSTGRES_DB }} -f restore.sql
+            psql -h ${{ secrets.DB_HOST }} -U ${{ secrets.POSTGRES_USER }} -d ${{ secrets.POSTGRES_DB }} -f dvdrental_backup1.sql
         
       env:
         PGPASSWORD: ${{ secrets.POSTGRES_PASSWORD }}

@@ -1,3 +1,4 @@
+---
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
@@ -11,7 +12,7 @@ spec:
     path: 'nginx-aks-deployment '
     repoURL: 'https://github.com/dinkol/nginx-aks-deployment.git'
     targetRevision: HEAD
-  sources: []
+  sources: [ ]
   project: default
   syncPolicy:
     automated:

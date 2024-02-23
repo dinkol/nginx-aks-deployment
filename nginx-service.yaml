@@ -2,10 +2,10 @@ apiVersion: v1
 kind: Service
 metadata:
   name: nginx-service-test2
-spec:
+  spec:
   type: LoadBalancer
   ports:
   - port: 80
-    targetPort: 80
+      targetPort: 80
   selector:
     app: nginx-test

@@ -33,9 +33,11 @@ jobs:
       - name: Use GITHUB_BEFORE_SHA
         run: |
           echo "GITHUB_BEFORE_SHA is set to $GITHUB_BEFORE_SHA"
-          
+
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v4
+        with:
+            fetch-depth: 0
       - name: Run Local Super-Linter
   # You may pin to the exact commit or the version.
   # uses: super-linter/super-linter@a8150b40c89574adb5f68bf9502b890a236a06b3

@@ -16,6 +16,24 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set GITHUB_BEFORE_SHA
+        id: set_before_sha
+        run: |
+          if git rev-parse HEAD~1 > /dev/null 2>&1; then
+            echo "Setting GITHUB_BEFORE_SHA to the previous commit SHA"
+            echo "GITHUB_BEFORE_SHA=$(git rev-parse HEAD~1)" >> $GITHUB_ENV
+          else
+            echo "Repository does not have a previous commit. Using current HEAD as GITHUB_BEFORE_SHA"
+            echo "GITHUB_BEFORE_SHA=$(git rev-parse HEAD)" >> $GITHUB_ENV
+          fi
+
+      - name: Use GITHUB_BEFORE_SHA
+        run: |
+          echo "GITHUB_BEFORE_SHA is set to $GITHUB_BEFORE_SHA"
+          
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v4
       - name: Run Local Super-Linter

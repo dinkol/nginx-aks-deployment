@@ -7,6 +7,8 @@ spec:
   selector:
     matchLabels:
       app: nginx-realtest
+  nodeSelector:
+      agentpool: ngnixnp
   template:
     metadata:
       labels:
@@ -24,5 +26,4 @@ spec:
           limits:
             memory: "128Mi"
             cpu: "250m"
-        nodeSelector:
-          agentpool: ngnixnp
+        

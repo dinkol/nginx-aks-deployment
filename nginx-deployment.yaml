@@ -7,8 +7,8 @@ spec:
   selector:
     matchLabels:
       app: nginx-realtest
-  nodeSelector:
-      agentpool: ngnixnp
+#  nodeSelector:
+#      agentpool: ngnixnp
   template:
     metadata:
       labels:
